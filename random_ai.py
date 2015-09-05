@@ -12,6 +12,8 @@ class RandomAI(Skeleton):
         # < 메시지 설정하기 >
         # self.wait_message = '다른 플레이어를 기다리는동안 표시할 메시지'
         # self.start_message = '게임이 시작되면 표시할 메시지'
+        #  self.win_message = '승리했을 때 표시할 메시지'
+        # self.lose_message = '패배했을 때 표시할 메시지'
         # self.change_message('All your base belong to us')로 언제든지 변경 가능합니다.
 
     def think(self, map_data, slime1_data, slime2_data):

@@ -4,9 +4,16 @@
 2015 포스텍-카이스트 학생 대제전 AI 종목인 슬라임 땅따먹기에서 Python을 사용한 AI 제작을 도와주는 Skeleton입니다. Python 3.4.3 버전을 기준으로 작성되었습니다.
 
 ## Release Note
+### v1.2.1
+- 승리 대사, 패배 대사 기능이 추가되었습니다.
+- 마지막 턴에는 think 함수를 호출하지 않도록 변경했습니다.
+- 게임 종료시의 판 상태와 함께 승리 / 패배 여부를 출력합니다.
+
+1.3 버전 서버에서 마지막 턴 정보를 두 번 보내는 문제가 있어 현재 결과가 두 번씩 출력됩니다. 서버가 업데이트되면 해결될테니 걱정하지 마세요. 
+
 ### v.1.2.0
-* 자동으로 팀 2일 때 대칭 알고리즘을 작성해 주는 기능이 추가되었습니다. 기존의 `from ai.skeleton import Skeleton` 대신 `from ai.skeleton import Doppelganger`로 임포트 후 Skeleton 클래스 대신 Doppelganger를 상속해 AI를 작성하면 됩니다.
-* 예시 알고리즘으로 `5 Gap` 알고리즘을 추가했습니다. 랜덤 기반으로 방향 이동 단위를 조금 더 크게 바꾼 알고리즘입니다. 제작한 AI를 테스트할 때 사용해주세요.
+- 자동으로 팀 2일 때 대칭 알고리즘을 작성해 주는 기능이 추가되었습니다. 기존의 `from ai.skeleton import Skeleton` 대신 `from ai.skeleton import Doppelganger`로 임포트 후 Skeleton 클래스 대신 Doppelganger를 상속해 AI를 작성하면 됩니다.
+- 예시 알고리즘으로 `5 Gap` 알고리즘을 추가했습니다. 랜덤 기반으로 방향 이동 단위를 조금 더 크게 바꾼 알고리즘입니다. 제작한 AI를 테스트할 때 사용해주세요.
 
 ### v1.1.1
 [슬라임 땅따먹기 서버 v1.2](http://haje.org/_media/projects/slimehopscotch/2015_ai%EA%B2%8C%EC%9E%84_ver_1.2.zip)와 호환성을 확인했습니다. 서버 1.1 버전에 있었던 팀 번호 전송 오류가 해결되어 두 번째로 연결하는 팀이 `--fix_team` 옵션을 사용할 필요가 없습니다.

@@ -60,6 +60,8 @@ class Skeleton:
         self.ai_name = '파이썬 스켈레톤'
         self.wait_message = ''
         self.start_message = ''
+        self.win_message = ''
+        self.lose_message = ''
 
     def connect(self):
         """
@@ -70,23 +72,42 @@ class Skeleton:
         if not env.fix_team:
             self.get_team_info()
 
-        if self.wait_message != '':
-            # 대기 메시지 출력
-            self.change_message(self.wait_message)
+        # 대기 메시지 출력
+        self.change_message(self.wait_message)
 
         while True:
             map_data, slime1_data, slime2_data = self.parse()
             if env.fix_team and self.turn == 0:
                 self.get_team_info()
 
-            if self.turn == 0 and self.start_message != '':
+            if self.turn == 0:
                 # 게임 시작 메시지 출력
                 self.change_message(self.start_message)
 
             print('팀 %d - 턴 %d 진행중' % (self.team+1, self.turn))
             print_map(map_data, slime1_data, slime2_data)
 
-            self.think(map_data, slime1_data, slime2_data)
+            if self.turn == env.last_turn:
+                count = [0, 0, 0]
+                for x in range(env.map_width):
+                    for y in range(env.map_height):
+                        if map_data[x][y] == 255:
+                            count[2] += 1
+                        else:
+                            count[map_data[x][y]] += 1
+                print('Result: %d / %d / %d' % tuple(count))
+
+                if count[self.team] > count[1-self.team]:
+                    print('승리!')
+                    self.change_message(self.win_message)
+                elif count[self.team] < count[1-self.team]:
+                    print('패배...')
+                    self.change_message(self.lose_message)
+                else:
+                    print('무승부?')
+
+            else:
+                self.think(map_data, slime1_data, slime2_data)
 
     def parse(self):
         self.turn = int.from_bytes(self.socket.receive(2), byteorder=env.endian)  # 턴 정보 읽기

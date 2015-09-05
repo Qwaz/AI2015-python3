@@ -4,6 +4,7 @@ endian = 'big'
 
 map_width = 25
 map_height = 13
+last_turn = 180
 
 host = 'localhost'
 port = 25252
