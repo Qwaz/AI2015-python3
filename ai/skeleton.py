@@ -105,7 +105,7 @@ class Skeleton:
                     self.change_message(self.lose_message)
                 else:
                     print('무승부?')
-
+                break
             else:
                 self.think(map_data, slime1_data, slime2_data)
 
@@ -126,7 +126,8 @@ class Skeleton:
 
         :param msg: 변경할 메시지. ~40bytes
         """
-        self.socket.send(bytes([255]), padding(msg, 40))
+        if msg != '':
+            self.socket.send(bytes([255]), padding(msg, 40))
 
     def change_direction(self, directions):
         """
